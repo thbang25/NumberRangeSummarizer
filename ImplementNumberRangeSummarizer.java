@@ -71,6 +71,7 @@ public class ImplementNumberRangeSummarizer implements NumberRangeSummarizer {
    // Main method for testing
    public static void main(String[] args) {
       NumberRangeSummarizer rangeSummary = new ImplementNumberRangeSummarizer();
+      //test input
       String input = "1,3,6,7,8,12,13,14,15,21,22,23,24,31";
       Collection<Integer> collected = rangeSummary.collect(input);
       String summarized = rangeSummary.summarizeCollection(collected);
