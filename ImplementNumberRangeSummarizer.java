@@ -32,15 +32,15 @@ public class ImplementNumberRangeSummarizer implements NumberRangeSummarizer {
          return "";
       }
       
-      
+      // Get input and store values
       List<Integer> sortValues = new ArrayList<>(input);
       StringBuilder buildStringValue = new StringBuilder();
       int startPoint = sortValues.get(0);
       
-      //Get the previous and start point
+      // Get the previous and start point
       int subsequentValue = startPoint;
      
-     //Go through the list
+     // Go through the list
       for (int i = 1; i < sortValues.size(); i++) {
          int current = sortValues.get(i);
          if (current != subsequentValue + 1) {
@@ -56,14 +56,17 @@ public class ImplementNumberRangeSummarizer implements NumberRangeSummarizer {
       return buildStringValue.toString();
    }
    
-   //Put together the strings
+   // Put together the strings
    private void combineStrings(StringBuilder result, int start, int end) {
       if (result.length() > 0) {
+      // Separate strings using a comma
          result.append(", ");
       }
       if (start == end) {
+      // Start values
          result.append(start);
       } else {
+      // Append the rest of the strings
          result.append(start).append("-").append(end);
       }
    }
@@ -71,7 +74,7 @@ public class ImplementNumberRangeSummarizer implements NumberRangeSummarizer {
    // Main method for testing
    public static void main(String[] args) {
       NumberRangeSummarizer rangeSummary = new ImplementNumberRangeSummarizer();
-      //test input
+      // Test input
       String input = "1,3,6,7,8,12,13,14,15,21,22,23,24,31";
       Collection<Integer> collected = rangeSummary.collect(input);
       String summarized = rangeSummary.summarizeCollection(collected);
