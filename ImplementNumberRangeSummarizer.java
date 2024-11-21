@@ -1,3 +1,9 @@
+/*
+Thabang Sambo
+Impact take home test
+number range summerizer
+*/
+
 import java.util.*;
 
 public class ImplementNumberRangeSummarizer implements NumberRangeSummarizer {
@@ -20,13 +26,13 @@ public class ImplementNumberRangeSummarizer implements NumberRangeSummarizer {
       return numbers;
    }
    
-  //A summary of the collections
-  
    @Override
-   public String CollectionImplementation(Collection<Integer> input) {
+   public String summarizeCollection(Collection<Integer> input) {
       if (input == null || input.isEmpty()) {
          return "";
       }
+      
+      
       List<Integer> sortValues = new ArrayList<>(input);
       StringBuilder buildStringValue = new StringBuilder();
       int startPoint = sortValues.get(0);
@@ -39,16 +45,36 @@ public class ImplementNumberRangeSummarizer implements NumberRangeSummarizer {
          int current = sortValues.get(i);
          if (current != subsequentValue + 1) {
             // Add the range to the buildStringValue
-            appendRange(buildStringValue, startPoint, subsequentValue);
+            combineStrings(buildStringValue, startPoint, subsequentValue);
             startPoint = current;
          }
          subsequentValue = current;
       }
       // Append the final range
-      appendRange(buildStringValue, startPoint, subsequentValue);
+      combineStrings(buildStringValue, startPoint, subsequentValue);
       //return built value
       return buildStringValue.toString();
    }
    
-}
+   //Put together the strings
+   private void combineStrings(StringBuilder result, int start, int end) {
+      if (result.length() > 0) {
+         result.append(", ");
+      }
+      if (start == end) {
+         result.append(start);
+      } else {
+         result.append(start).append("-").append(end);
+      }
+   }
 
+   // Main method for testing
+   public static void main(String[] args) {
+      NumberRangeSummarizer rangeSummary = new ImplementNumberRangeSummarizer();
+      String input = "1,3,6,7,8,12,13,14,15,21,22,23,24,31";
+      Collection<Integer> collected = rangeSummary.collect(input);
+      String summarized = rangeSummary.summarizeCollection(collected);
+      System.out.println("Input: " + input);
+      System.out.println("Summarized: " + summarized);
+   }
+}
